@@ -19,10 +19,19 @@
     };
     configFile = {
       text = ''
-        mkdir ($nu.data-dir | path join "vendor/autoload")
-        starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-                      if (tty) == "/dev/tty1" { exec hyprland }
+                mkdir ($nu.data-dir | path join "vendor/autoload")
+                starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+        		alias cd = z
+                alias npm = pnpm
+                zoxide init nushell | save -f ~/.zoxide.nu
+                source ~/.zoxide.nu
       '';
     };
+    loginFile = {
+      text = ''
+                if (tty) == "/dev/tty1" { exec hyprland }
+        	  '';
+    };
+    plugins = [ ];
   };
 }

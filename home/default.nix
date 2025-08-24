@@ -77,6 +77,8 @@
       pkgs.vscode-langservers-extracted
       pkgs.vtsls
       pkgs.eslint_d
+      pkgs.pnpm
+      pkgs.zoxide
 
       # Screenshot
       pkgs.slurp
