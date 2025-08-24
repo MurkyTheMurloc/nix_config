@@ -38,6 +38,7 @@
     sessionVariables = { };
     #sessionCommands = ''	  '';
     packages = [
+      pkgs.bitwarden-cli
       pkgs.bat
       pkgs.yt-dlp
       pkgs.deno
