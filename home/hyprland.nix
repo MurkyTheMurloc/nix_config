@@ -31,7 +31,7 @@
         "$mod, P, exec, nu -c \"slurp | grim -g \\$in - | wl-copy\""
         "$mod SHIFT, P, exec, nu -c \"grim -o (hyprctl -j activeworkspace | from json | get monitor) - | wl-copy\""
         "$mod, F, fullscreen"
-        "$mod, FG, hyprctl dispatch fullscreenstate 2 1"
+        "$mod, FG,exec, hyprctl dispatch fullscreenstate 2 1"
         "$mod SHIFT, F, togglefloating"
         "$mod SHIFT, F, resizeactive, exact 960 540"
         "$mod, mouse_up, resizeactive, 16 9"
