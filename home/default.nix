@@ -76,6 +76,7 @@
       pkgs.taplo
       pkgs.vscode-langservers-extracted
       pkgs.vtsls
+      pkgs.eslint_d
 
       # Screenshot
       pkgs.slurp
