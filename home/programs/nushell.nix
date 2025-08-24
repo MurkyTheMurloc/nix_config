@@ -32,6 +32,6 @@
                 if (tty) == "/dev/tty1" { exec hyprland }
         	  '';
     };
-    plugins = [ ];
+    ###    plugins = [ pkgs.nushellPlugins.clipboard ];
   };
 }
