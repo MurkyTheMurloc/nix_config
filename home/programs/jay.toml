@@ -58,12 +58,12 @@ ctrl-q = "quit"
 
   # Monitore
     [[outputs]]
-    name = "HDMI-A-1"
+    name = ""
     match.serial-number = "111NTYT0X610"
 
     x = 0
     y = 0
-    scale = 2
+    scale = 1.667
 
    [theme]
     border-width = 2

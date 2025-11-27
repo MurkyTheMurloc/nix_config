@@ -18,6 +18,7 @@
   wayland.windowManager.hyprland = {
     systemd.enable = true;
     enable = true;
+    xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
@@ -96,8 +97,7 @@
         "noanim, selection"
       ];
       monitor = [
-        "HDMI-A-1, preferred, 0x0, 1.667"
-        #"DP-2, preferred, auto-right, 1.667"
+        ",preferred, auto, 1.667"
       ];
       xwayland = {
         force_zero_scaling = true;

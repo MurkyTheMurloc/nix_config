@@ -22,6 +22,25 @@
     "usbhid"
     "sd_mod"
   ];
+
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    keyboard.qmk.enable = true;
+    steam-hardware.enable = true;
+  };
+  services = {
+    fwupd.enable = true;
+    fstrim = {
+      enable = true;
+    };
+  };
+  hardware.cpu.amd = {
+    updateMicrocode = true;
+  };
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -56,5 +75,4 @@
   networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

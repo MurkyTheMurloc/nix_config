@@ -16,15 +16,21 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-
-  hardware = {
-    bluetooth = {
+  boot.loader = {
+    systemd-boot = {
       enable = true;
-      powerOnBoot = true;
+      configurationLimit = 2;
     };
-    keyboard.qmk.enable = true;
-    steam-hardware.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+    };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    flake = "./flake.nix";
+    dates = "daily";
   };
 
   # Configure network proxy if necessary
@@ -39,10 +45,13 @@
   ];
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+  };
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -168,9 +177,15 @@
     };
     pulse.enable = true;
   };
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly"; # z. B. wöchentlich
-  nix.gc.options = "--delete-older-than 1d"; # alles älter als 1 Tag löschen
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
+  };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1d";
+  };
   services.tailscale = {
     enable = true;
     # systemd.enable = true;
