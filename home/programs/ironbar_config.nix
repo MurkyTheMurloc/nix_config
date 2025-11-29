@@ -2,7 +2,7 @@
 
 {
 home.packages = [
-  pkgs.ironbar
+  inputs.ironbar
 ];
   programs.ironbar = {
       enable = true;
