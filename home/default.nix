@@ -22,7 +22,7 @@
     ./programs/starship.nix
     ./programs/lutrix.nix
     ./programs/spotify.nix
-    ./programs/ironbar_config.nix
+	./ironbar.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
