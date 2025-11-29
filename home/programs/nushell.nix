@@ -29,7 +29,7 @@
     };
     loginFile = {
       text = ''
-                if (tty) == "/dev/tty1" { exec hyprland }
+                if (tty) == "/dev/tty1" { exec hyprland  }
         	  '';
     };
     ###    plugins = [ pkgs.nushellPlugins.clipboard ];

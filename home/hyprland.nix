@@ -22,6 +22,19 @@
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
+      windowrulev2 = [
+        "workspace 1 silent, class:nvim"
+        "workspace 2 silent, class:ghostty"
+        "workspace 3 silent, class:zen"
+        "workspace 3 silent, class:brave"
+        "workspace 4 silent, class:discord"
+        "workspace 4 silent, class:spotify"
+        "workspace 4 silent, class:telegram"
+        "workspace 5 silent, class:slack"
+      ];
+      exec = [
+        "nu -c 'ironbar'"
+      ];
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
       "$menu" = "anyrun";
