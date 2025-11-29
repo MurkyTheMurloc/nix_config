@@ -7,7 +7,7 @@
 {
   imports = [
     inputs.stylix.homeModules.stylix
-	#inputs.ironbar.homeManagerModules.default
+	inputs.ironbar.homeManagerModules.default
     #    inputs.nix-index-database.homeModules.nix-index
     ./programs/ghostty.nix
     ./programs/yazi.nix
