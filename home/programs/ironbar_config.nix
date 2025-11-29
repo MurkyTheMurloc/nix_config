@@ -1,8 +1,9 @@
 { pkgs, inputs, ... }:
 
 {
-  home.packages = with pkgs; [ ironbar ];
-
+home.packages = [
+  inputs.ironbar
+];
   programs.ironbar = {
       enable = true;
       systemd = true;
