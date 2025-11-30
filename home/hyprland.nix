@@ -55,13 +55,14 @@ in
           layouts = [ "scroller" ];
         };
       };
-      windowrulev2 = [
-        "workspace 2 , class:^(com\\.mitchellh\\.ghostty)$"
-        "workspace 3 , class:^(brave-browser)$"
-        "workspace 3 , class:^(zen-beta)$"
-        "workspace 4 , class:^(spotify)$"
-        "workspace 4 , class:^(vesktop)$"
-        "workspace 4 , class:^(Slack)$"
+
+      windowrule = [
+        "workspace 2 , class:ghostty"
+        "workspace 3 , class:brave-browser"
+        "workspace 3 , class:zen-beta"
+        "workspace 4 , class:spotify"
+        "workspace 4 , class:vesktop"
+        "workspace 4 , class:Slack"
       ];
       workspace = [ "4, layout:scroller, gapsin:0, gapsout:0" ];
       exec = [
