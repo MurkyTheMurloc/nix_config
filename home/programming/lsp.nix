@@ -25,8 +25,8 @@
     pkgs.vtsls
     pkgs.eslint_d
     pkgs.zoxide
-    pkgs.tailwind
-    pkgs.graphql-lsp
+	#    pkgs.tailwind
+	#pkgs.graphql-lsp
     pkgs.rust-analyzer
     pkgs.rustc
     pkgs.rustfmt
@@ -34,8 +34,8 @@
     pkgs.zls # Zig
     pkgs.yaml-language-server
     pkgs.bash-language-server
-    pkgs.kubernetes-language-server
-    pkgs.sql-language-server
-    pkgs.dockerfile-language-server
+	#pkgs.kubernetes-language-server
+	#pkgs.sql-language-server
+	#pkgs.dockerfile-language-server
   ];
 }

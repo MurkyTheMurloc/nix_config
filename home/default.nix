@@ -7,7 +7,7 @@
 {
   imports = [
     inputs.stylix.homeModules.stylix
-	inputs.ironbar.homeManagerModules.default
+    inputs.ironbar.homeManagerModules.default
     #    inputs.nix-index-database.homeModules.nix-index
     ./programs/ghostty.nix
     ./programs/yazi.nix
@@ -22,7 +22,11 @@
     ./programs/starship.nix
     ./programs/lutrix.nix
     ./programs/spotify.nix
-	./ironbar.nix
+    ./ironbar.nix
+    ./programming/lsp.nix
+    ./programming/webdev.nix
+    ./arbeit/chromium.nix
+    ./arbeit/slack.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -56,7 +60,7 @@
   };
 
   programs = {
-       home-manager.enable = true;
+    home-manager.enable = true;
     git = {
       enable = true;
       lfs.enable = true;

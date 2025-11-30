@@ -4,7 +4,17 @@
   pkgs,
   ...
 }:
-
+let
+  toggleApp = pkgs.writeShellScriptBin "toggle-app" ''
+    appclass="$1"
+    command="$2"
+    if hyprctl clients | grep -q "class:.*$appclass"; then
+      hyprctl dispatch focuswindow "class:.*$appclass"
+    else
+      exec $command
+    fi
+  '';
+in
 {
   # services.hyprpaper = {
   #enable = true;
@@ -23,14 +33,10 @@
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
       windowrulev2 = [
-        "workspace 1 silent, class:nvim"
-        "workspace 2 silent, class:ghostty"
-        "workspace 3 silent, class:zen"
-        "workspace 3 silent, class:brave"
-        "workspace 4 silent, class:discord"
-        "workspace 4 silent, class:spotify"
-        "workspace 4 silent, class:telegram"
-        "workspace 5 silent, class:slack"
+        "workspace 2 , class:^(com\\.mitchellh\\.ghostty)$"
+        "workspace 3 , class:^(brave-browser)$"
+        "workspace 3 , class:^(zen-beta)$"
+        "workspace 4 , class:^(spotify)$"
       ];
       exec = [
         "nu -c 'ironbar'"
@@ -79,6 +85,11 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+
+        "$mod, S, exec, spotify"
+        "$mod, Z, exec, ${toggleApp}/bin/toggle-app  zen-beta"
+
+        "$mod, B, exec, ${toggleApp}/bin/toggle-app  brave-browser"
       ];
       decoration = {
         shadow.enabled = false;
@@ -138,4 +149,5 @@
       "Xft.rgba" = "rgb";
     };
   };
+  home.packages = [ toggleApp ];
 }
