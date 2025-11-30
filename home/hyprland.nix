@@ -7,11 +7,10 @@
 let
   toggleApp = pkgs.writeShellScriptBin "toggle-app" ''
     appclass="$1"
-    command="$2"
     if hyprctl clients | grep -q "class:.*$appclass"; then
       hyprctl dispatch focuswindow "class:.*$appclass"
     else
-      exec $command
+      exec $appclass
     fi
   '';
 in
@@ -28,7 +27,13 @@ in
   wayland.windowManager.hyprland = {
     systemd.enable = true;
     enable = true;
-    xwayland.enable = true;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
+    ];
+    xwayland = {
+      enable = true;
+
+    };
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
@@ -37,7 +42,10 @@ in
         "workspace 3 , class:^(brave-browser)$"
         "workspace 3 , class:^(zen-beta)$"
         "workspace 4 , class:^(spotify)$"
+        "workspace 4 , class:^(vesktop)$"
+        "workspace 4 , class:^(Slack)$"
       ];
+      workspace = [ "4, layout:scroller, gapsin:0, gapsout:0" ];
       exec = [
         "nu -c 'ironbar'"
       ];
@@ -86,10 +94,11 @@ in
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
 
-        "$mod, S, exec, spotify"
-        "$mod, Z, exec, ${toggleApp}/bin/toggle-app  zen-beta"
-
+        "$mod, M, exec, spotify"
+        "$mod, S, exec, slack"
+        "$mod, D, exec, vesktop"
         "$mod, B, exec, ${toggleApp}/bin/toggle-app  brave-browser"
+        "$mod, Z, exec, ${toggleApp}/bin/toggle-app  zen-beta"
       ];
       decoration = {
         shadow.enabled = false;

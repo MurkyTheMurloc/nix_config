@@ -27,6 +27,7 @@
     ./programming/webdev.nix
     ./arbeit/chromium.nix
     ./arbeit/slack.nix
+    ./programs/vesktop.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
