@@ -27,9 +27,11 @@ in
   wayland.windowManager.hyprland = {
     systemd.enable = true;
     enable = true;
+
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
+      pkgs.hyprlandPlugins.hyprscrolling
     ];
+
     xwayland = {
       enable = true;
 
@@ -37,6 +39,22 @@ in
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
+      plugin = {
+        hyprscrolling = {
+          enabled = true;
+          speed = 1.0;
+          column_width = 0.7;
+          general = {
+            border_size = 2;
+            gaps_in = 8;
+            gaps_out = 16;
+
+            allow_tearing = true;
+          };
+          invert = false;
+          layouts = [ "scroller" ];
+        };
+      };
       windowrulev2 = [
         "workspace 2 , class:^(com\\.mitchellh\\.ghostty)$"
         "workspace 3 , class:^(brave-browser)$"
