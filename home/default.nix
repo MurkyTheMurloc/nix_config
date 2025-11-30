@@ -51,8 +51,6 @@
       pkgs.wayland-utils
       pkgs.wlroots
       pkgs.brave
-      pkgs.legcord
-
       # Screenshot
       pkgs.slurp
       pkgs.grim
