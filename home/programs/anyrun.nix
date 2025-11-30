@@ -33,8 +33,8 @@
       maxEntries = 5;
 
       plugins = [
-        "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/libkidex.so"
+        # "${pkgs.anyrun}/lib/libapplications.so"
+        # "${pkgs.anyrun}/lib/libkidex.so"
 
         #        "${pkgs.anyrun}/lib/libranslate.so"
       ];

@@ -44,27 +44,19 @@ in
           enabled = true;
           speed = 1.0;
           column_width = 0.7;
-          general = {
-            border_size = 2;
-            gaps_in = 8;
-            gaps_out = 16;
 
-            allow_tearing = true;
-          };
-          invert = false;
-          layouts = [ "scroller" ];
         };
       };
 
       windowrule = [
-        "workspace 2 , class:ghostty"
-        "workspace 3 , class:brave-browser"
-        "workspace 3 , class:zen-beta"
-        "workspace 4 , class:spotify"
-        "workspace 4 , class:vesktop"
-        "workspace 4 , class:Slack"
+        "workspace 2 , match:class com.mitchellh.ghostty"
+        "workspace 3 , match:class brave-browser"
+        "workspace 3 , match:class zen-beta"
+        "workspace 4 , match:class spotify"
+        "workspace 4 , match:class vesktop"
+        "workspace 4 , match:class Slack"
       ];
-      workspace = [ "4, layout:scroller, gapsin:0, gapsout:0" ];
+      workspace = [ "4, match:scroller," ];
       exec = [
         "nu -c 'ironbar'"
       ];
@@ -105,7 +97,7 @@ in
         "$mod SHIFT, PRIOR, movecurrentworkspacetomonitor, -1"
         "$mod SHIFT, HOME, movecurrentworkspacetomonitor, +1"
         "$mod SHIFT, END, movecurrentworkspacetomonitor, -1"
-        "$mod, SPACE, exec, nu -c \"anyrun | hyprctl dispatch exec -- \\$in\""
+        "$mod,SPACE, exec, nu -c \"anyrun | hyprctl dispatch exec -- \\$in\""
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -144,10 +136,7 @@ in
         force_no_accel = true;
       };
       # Prevent color picker and screenshot tools to capture selection borders
-      layerrule = [
-        "noanim, hyprpicker"
-        "noanim, selection"
-      ];
+
       monitor = [
         ",preferred, auto, 1.667"
       ];
