@@ -28,7 +28,7 @@
     ./arbeit/chromium.nix
     ./arbeit/slack.nix
     ./programs/vesktop.nix
-    #  ./programs/rofi.nix
+    ./programs/rofi.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
