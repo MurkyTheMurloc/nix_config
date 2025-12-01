@@ -6,8 +6,8 @@
 
 {
   programs.rofi = {
-    enable = pkgs.stdenv.hostPlatform.isLinux;
-    terminal = "ghostty";
+    enable = true;
+    terminal = "${pkgs.ghostty}/bin/ghostty";
     location = "center";
     extraConfig = {
       show-icons = true;
