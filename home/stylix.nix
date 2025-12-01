@@ -56,8 +56,6 @@ in
     };
 
     targets = {
-      ghostty.enable = true;
-      rofi.enable = true;
     };
     base16Scheme = theme;
     image = ./programs/wallpapers/mojave_rice.jpg;

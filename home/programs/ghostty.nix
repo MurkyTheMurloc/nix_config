@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  mkTheme = themes: "light:${themes.light},dark:${themes.dark}";
-in
 {
   programs.ghostty = {
     enable = true;
@@ -19,10 +16,7 @@ in
       adjust-strikethrough-thickness = 1;
       #custom-shader = [ "${./cursor_warp.glsl}" ];
       font-family = "Maple Mono";
-      theme = mkTheme {
-        dark = inputs.catppuccin-ghostty + /themes/catppuccin-mocha.conf;
-        light = inputs.catppuccin-ghostty + /themes/catppuccin-latte.conf;
-      };
+      theme = "${inputs.catppuccin-ghostty}/themes/catppuccin-mocha.conf";
       font-feature = [
         # basic ligatures
         "-calt"
