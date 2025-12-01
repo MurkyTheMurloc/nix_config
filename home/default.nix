@@ -16,7 +16,7 @@
     ./programs/neovim.nix
     ./programs/nushell.nix
     ./programs/bluetui.nix
-    ./programs/anyrun.nix
+    #    ./programs/anyrun.nix
     ./hyprland.nix
     ./stylix.nix
     ./programs/starship.nix
@@ -28,7 +28,7 @@
     ./arbeit/chromium.nix
     ./arbeit/slack.nix
     ./programs/vesktop.nix
-    ./programs/rofi.nix
+    #  ./programs/rofi.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

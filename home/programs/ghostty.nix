@@ -1,14 +1,28 @@
-{ ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
+let
+  mkTheme = themes: "light:${themes.light},dark:${themes.dark}";
+in
 {
   programs.ghostty = {
     enable = true;
+    enableZshIntegration = config.programs.zsh.enable;
+    package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.ghostty else pkgs.ghostty-bin;
     settings = {
       adjust-underline-thickness = 1;
       adjust-overline-thickness = 1;
       adjust-strikethrough-thickness = 1;
-      background-opacity = 0.875;
+      custom-shader = [ "${./cursor_warp.glsl}" ];
       font-family = "Maple Mono";
+      theme = mkTheme {
+        dark = inputs.catppuccin-ghostty + /themes/catppuccin-mocha.conf;
+        light = inputs.catppuccin-ghostty + /themes/catppuccin-latte.conf;
+      };
       font-feature = [
         # basic ligatures
         "-calt"
@@ -40,12 +54,12 @@
         "+cv41" # alternative r
       ];
       font-size = 13.5;
-      # Use official `catppuccin-mocha.conf` instead of ported textmate theme
-      theme = "catppuccin-mocha";
+      macos-titlebar-style = "hidden";
       window-padding-balance = true;
       window-padding-x = 16;
       window-padding-y = 16;
       window-inherit-working-directory = true;
+      window-decoration = pkgs.stdenv.hostPlatform.isDarwin;
     };
   };
 }
