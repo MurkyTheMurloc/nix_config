@@ -5,6 +5,23 @@
   ...
 }:
 let
+  focusScroll = pkgs.writeShellScriptBin "focus-scroll" ''
+       DIR="$1"
+
+    # Aktuelles Layout der aktiven Workspace abfragen
+    layout=$(hyprctl activeworkspace -j | jq -r '.[0].layout // empty')
+
+    if [ "$layout" = "scrolling" ]; then
+        # Scrolling-Layout: Fokus in Spalte bewegen
+        hyprctl layoutmsg focus "$DIR"
+    else
+        # Normales Layout: Fenster-Fokus bewegen
+        hyprctl dispatch movefocus "$DIR"
+    fi
+  '';
+in
+
+let
   toggleApp = pkgs.writeShellScriptBin "toggle-app" ''
     appclass="$1"
     if hyprctl clients | grep -q "class:.*$appclass"; then
@@ -42,7 +59,7 @@ in
     settings = {
       plugin = {
         wslayout = {
-          default_layout = "master";
+          default_layout = "scrolling";
 
         };
 
@@ -50,7 +67,6 @@ in
           enabled = true;
           speed = 1.0;
           column_width = 0.7;
-
         };
       };
 
@@ -83,10 +99,12 @@ in
         "$mod SHIFT, F, resizeactive, exact 960 540"
         "$mod, mouse_up, resizeactive, 16 9"
         "$mod, mouse_down, resizeactive, -16 -9"
-        "$mod, H, movefocus, l"
-        "$mod, J, movefocus, d"
-        "$mod, K, movefocus, u"
-        "$mod, L, movefocus, r"
+
+        "$mod, H, exec, ${focusScroll}/bin/focus-scroll h"
+        "$mod, J, exec, ${focusScroll}/bin/focus-scroll d"
+        "$mod, K, exec, ${focusScroll}/bin/focus-scroll u"
+        "$mod, L, exec, ${focusScroll}/bin/focus-scroll l"
+
         "$mod SHIFT, H, movewindow, l"
         "$mod SHIFT, J, movewindow, d"
         "$mod SHIFT, K, movewindow, u"
@@ -112,7 +130,6 @@ in
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
-
         "$mod, M, exec, spotify"
         "$mod, S, exec, slack"
         "$mod, D, exec, vesktop"
@@ -175,5 +192,8 @@ in
       "Xft.rgba" = "rgb";
     };
   };
-  home.packages = [ toggleApp ];
+  home.packages = [
+    toggleApp
+    focusScroll
+  ];
 }
