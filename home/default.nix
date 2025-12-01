@@ -43,6 +43,7 @@
     # (https://github.com/nix-community/home-manager/issues/4313)
     sessionVariables = { };
     #sessionCommands = ''	  '';
+
     packages = [
       pkgs.bat
       pkgs.yt-dlp
