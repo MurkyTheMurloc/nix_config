@@ -29,7 +29,8 @@ in
     enable = true;
 
     plugins = [
-      pkgs.hyprlandPlugins.hyprscrolling
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling
+      inputs.hyprWorkspaceLayouts.packages.${pkgs.system}.default
     ];
 
     xwayland = {
@@ -40,6 +41,11 @@ in
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
       plugin = {
+        wslayout = {
+          default_layout = "master";
+
+        };
+
         hyprscrolling = {
           enabled = true;
           speed = 1.0;
@@ -56,7 +62,9 @@ in
         "workspace 4 , match:class vesktop"
         "workspace 4 , match:class Slack"
       ];
-      workspace = [ "4, match:scroller," ];
+      workspace = [
+        "4,layoutopt:wslayout-layout:scrolling"
+      ];
       exec = [
         "nu -c 'ironbar'"
       ];
@@ -127,6 +135,7 @@ in
         border_size = 2;
         gaps_in = 8;
         gaps_out = 16;
+        layout = "workspacelayout";
 
         allow_tearing = true;
       };
