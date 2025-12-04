@@ -14,9 +14,9 @@ in
     terminal = "${pkgs.ghostty}/bin/ghostty";
     location = "center";
     theme = {
-      "*" = {
+      body = {
         text-color = mkLiteral "#cdd6f4";
-        background-color = mkForce (mkLiteral "transparent");
+        background-color = mkLiteral "transparent";
       };
       scrollbar = {
         enabled = false;

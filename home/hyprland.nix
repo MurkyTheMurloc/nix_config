@@ -58,13 +58,14 @@ in
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     settings = {
       plugin = {
-        wslayout = {
-          default_layout = "scrolling";
 
+        wslayout = {
+          default_layout = "master";
         };
 
         hyprscrolling = {
           enabled = true;
+          show_notification = false;
           speed = 1.0;
           column_width = 0.7;
         };
@@ -153,7 +154,7 @@ in
         border_size = 2;
         gaps_in = 8;
         gaps_out = 16;
-        layout = "workspacelayout";
+        layout = "wslayout";
 
         allow_tearing = true;
       };
